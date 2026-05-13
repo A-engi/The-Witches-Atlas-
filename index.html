@@ -4,48 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#07111f">
-  <title>The Witches Atlas v1.0.0</title>
-  <link rel="stylesheet" href="./shell.css?v=1.0.0">
+  <title>The Witches Atlas | Atlas</title>
+  <link rel="stylesheet" href="./shell.css?v=1.1.0">
 </head>
-<body>
-  <div class="top-bar-fade" aria-hidden="true"></div>
+<body data-page="atlas">
+  <div id="appShell"></div>
 
-  <header class="top-bar" aria-label="App header">
-    <button id="menuButton" class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu"><span></span><span></span><span></span></button>
-    <div class="search-wrap">
-      <label class="sr-only" for="siteSearchInput">Search the atlas</label>
-      <input id="siteSearchInput" class="site-search-input" type="search" placeholder="Search covens, towers, woods..." autocomplete="off">
-    </div>
-    <button id="filterButton" class="top-button filter-button" type="button" aria-label="Open filters" aria-expanded="false" aria-controls="filterMenu">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16l-6.2 7.1v4.4l-3.6 1.8v-6.2L4 6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-    </button>
-  </header>
+  <main class="page-stage">
+    <section class="card">
+      <p class="eyebrow">The map room</p>
+      <h1>The Witches Atlas</h1>
+      <p>A public demo atlas for fictional covens, realms, recipes, magic paths, skies and memos. Nothing here uses real places or operational details.</p>
 
-  <aside id="sideMenu" class="side-menu" aria-hidden="true">
-    <div class="menu-header">
-      <div class="menu-brand">
-        <div class="menu-logo" aria-hidden="true">
-          <svg viewBox="0 0 64 64"><rect x="4" y="4" width="56" height="56" rx="16" fill="#081421" stroke="#60ebff" stroke-opacity=".52" stroke-width="2"/><path d="M39 10a18 18 0 1 0 11 31A20 20 0 1 1 39 10Z" fill="#ffd66b"/><path d="M17 46c7-10 15-16 30-23M19 32c9 0 17 4 27 14" fill="none" stroke="#73f5ff" stroke-width="2.1" stroke-linecap="round"/><path d="M30 18 33 25 40 28 33 31 30 38 27 31 20 28 27 25Z" fill="#9bfff7"/></svg>
-        </div>
-        <div class="menu-brand-text"><strong>The Witches Atlas</strong><span>v1.0.0 public shell</span></div>
+      <div class="grid">
+        <article class="tile"><h2>Covens are places on the atlas.</h2><p>Covens are places on the atlas.</p></article>
+        <article class="tile"><h2>Cauldron holds recipes and casting areas.</h2><p>Cauldron holds recipes and casting areas.</p></article>
+        <article class="tile"><h2>Magic holds friendly coven bonds and spell paths.</h2><p>Magic holds friendly coven bonds and spell paths.</p></article>
       </div>
-      <button id="menuCloseButton" class="menu-close-button" type="button" aria-label="Close menu">&times;</button>
-    </div>
-    <section class="menu-section"><div class="menu-section-title">Pages</div><a class="menu-list-item active" href="./index.html"><span class="menu-item-icon">â½</span><span>Atlas</span></a><a class="menu-list-item" href="./weather.html"><span class="menu-item-icon">â</span><span>Weather</span></a><a class="menu-list-item" href="./memos.html"><span class="menu-item-icon">â¦</span><span>Memos</span></a></section>
-    <section class="menu-section"><div class="menu-section-title">Status</div><p class="menu-note">Public demo shell only. No real site data, no tokens, no edit tools.</p></section>
-  </aside>
-  <div id="menuOverlay" class="menu-overlay" hidden></div>
+    </section>
+  </main>
 
-  <nav class="side-rail" aria-label="Primary navigation">
-    <a class="rail-button active" href="./index.html" aria-label="Atlas"><svg class="rail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5 9 4l6 2.5L20 4v13.5L15 20l-6-2.5L4 20V6.5Zm5-1.3v12.2m6-10.9v12.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="rail-label">Atlas</span></a>
-    <a class="rail-button" href="./weather.html" aria-label="Weather"><svg class="rail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 18.2h8.5a4 4 0 0 0 .5-8 5.7 5.7 0 0 0-10.9 1.2 3.5 3.5 0 0 0 1.9 6.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="m12.8 12-2.3 3.5h2.2L11 19l3.3-4.4h-2.2L13.6 12Z" fill="currentColor"/></svg><span class="rail-label">Weather</span></a>
-    <a class="rail-button" href="./memos.html" aria-label="Memos"><svg class="rail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.5h12v15H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8h6M9 12h6M9 16h3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="rail-label">Memos</span></a>
-    <button id="toolsButton" class="rail-button" type="button" aria-label="Tools" aria-expanded="false" aria-controls="railToolsMenu"><svg class="rail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M4.2 7.5l3.4 2M16.4 14.5l3.4 2M4.2 16.5l3.4-2M16.4 9.5l3.4-2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="1.9"/></svg><span class="rail-label">Tools</span></button>
-  </nav>
-  <div id="railToolsMenu" class="rail-tools-menu" hidden><button class="rail-tool-button" type="button">Add charm</button><button class="rail-tool-button" type="button">Show all realms</button><button class="rail-tool-button" type="button">Reload atlas</button></div>
-  <div id="filterMenu" class="top-filter-menu" hidden><div class="top-filter-header"><strong>Filters</strong><span>Demo realms only</span></div><button class="top-filter-action" type="button">Moonfall</button><button class="top-filter-action" type="button">Thornwick</button><button class="top-filter-action" type="button">Frostmere</button></div>
-
-  <main class="page-stage"><section class="demo-card"><p class="eyebrow">Public demo shell</p><h1>The Witches Atlas</h1><p>This is the shared chrome only: top bar, fade, side rail, menu and filter shell. Other pages can sit underneath it without duplicating the app frame.</p></section></main>
-  <script src="./shell.js?v=1.0.0" defer></script>
+  <script src="./shell.js?v=1.1.0" defer></script>
 </body>
 </html>
