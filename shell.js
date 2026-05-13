@@ -1,4 +1,4 @@
-/* The Witches Atlas shell.js v1.1.1 */
+/* The Witches Atlas shell.js v1.1.2 */
 
 const pageKey = document.body?.dataset?.page || "atlas";
 
@@ -24,7 +24,7 @@ const shellMarkup = `
         <div class="menu-logo" aria-hidden="true">
           <svg viewBox="0 0 64 64"><rect x="4" y="4" width="56" height="56" rx="16" fill="#081421" stroke="#60ebff" stroke-opacity=".52" stroke-width="2"/><path d="M39 10a18 18 0 1 0 11 31A20 20 0 1 1 39 10Z" fill="#ffd66b"/><path d="M17 46c7-10 15-16 30-23M19 32c9 0 17 4 27 14" fill="none" stroke="#73f5ff" stroke-width="2.1" stroke-linecap="round"/><path d="M30 18 33 25 40 28 33 31 30 38 27 31 20 28 27 25Z" fill="#9bfff7"/></svg>
         </div>
-        <div class="menu-brand-text"><strong>The Witches Atlas</strong><span>v1.1.1 public shell</span></div>
+        <div class="menu-brand-text"><strong>The Witches Atlas</strong><span>v1.1.2 public shell</span></div>
       </div>
       <button id="menuCloseButton" class="menu-close-button" type="button" aria-label="Close menu">&times;</button>
     </div>
