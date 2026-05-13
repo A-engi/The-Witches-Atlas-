@@ -1,6 +1,5 @@
-/* The Witches Atlas shell.css v1.1.0
-   Shared public shell. Fictional demo only. */
-
+/* The Witches Atlas shell.css v1.1.1
+   
 :root {
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -14,6 +13,7 @@
   --accent: #60ebff;
   --border: rgba(255, 255, 255, 0.12);
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.48);
+  --rail-top: calc(var(--top) + var(--safe-top) + 34px);
 }
 
 * { box-sizing: border-box; }
@@ -34,6 +34,10 @@ body {
     radial-gradient(circle at 78% 12%, rgba(185, 134, 255, 0.18), transparent 24rem),
     radial-gradient(circle at 16% 78%, rgba(96, 235, 255, 0.10), transparent 20rem),
     linear-gradient(180deg, #07111f, #030914);
+}
+
+body.rail-collapsed {
+  --rail: 18px;
 }
 
 button,
@@ -298,8 +302,15 @@ button { cursor: pointer; }
 
 .menu-item-icon {
   width: 20px;
-  text-align: center;
+  display: inline-grid;
+  place-items: center;
   color: var(--accent);
+}
+
+.menu-item-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .menu-note {
@@ -308,26 +319,51 @@ button { cursor: pointer; }
   line-height: 1.45;
 }
 
-.side-rail {
+/* ================================
+   Collapsible rail dock
+================================ */
+
+.rail-dock {
   position: fixed;
   z-index: 450;
-  top: calc(var(--top) + var(--safe-top) + 34px);
+  top: var(--rail-top);
   left: 0;
-  bottom: 0;
-  width: var(--rail);
+  width: 66px;
+  display: grid;
+  grid-template-columns: 58px 16px;
+  align-items: start;
+  pointer-events: none;
+  transition: transform 0.22s ease;
+}
+
+body.rail-collapsed .rail-dock {
+  transform: translateX(-58px);
+}
+
+.side-rail {
+  width: 58px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 0 6px calc(10px + var(--safe-bottom));
-  pointer-events: none;
+  padding: 8px 5px;
+  border: 1px solid rgba(96, 235, 255, 0.18);
+  border-left: 0;
+  border-radius: 0 24px 24px 0;
+  background:
+    linear-gradient(180deg, rgba(12, 28, 41, 0.36), rgba(8, 13, 22, 0.30)),
+    rgba(8, 13, 22, 0.18);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  pointer-events: auto;
 }
 
-.rail-button {
+.rail-button,
+.rail-collapse-button {
   width: 52px;
   height: 52px;
   display: grid;
   place-items: center;
-  pointer-events: auto;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 17px;
   color: var(--soft);
@@ -341,26 +377,50 @@ button { cursor: pointer; }
 
 .rail-button.active,
 .rail-button:hover,
-.rail-button[aria-expanded="true"] {
+.rail-button[aria-expanded="true"],
+.rail-collapse-button:hover {
   border-color: rgba(120, 239, 255, 0.92);
   color: var(--text);
   background: linear-gradient(180deg, rgba(121, 89, 218, 0.78), rgba(18, 88, 120, 0.82));
   box-shadow: 0 0 0 1px rgba(96, 235, 255, 0.16), 0 0 20px rgba(96, 235, 255, 0.20), 0 12px 28px rgba(0, 0, 0, 0.28);
 }
 
-.rail-glyph {
-  font-size: 24px;
-  line-height: 1;
+.rail-icon {
+  width: 26px;
+  height: 26px;
+  display: block;
 }
 
 .rail-label { display: none; }
 
+.rail-collapse-button {
+  position: relative;
+  z-index: 2;
+  width: 28px;
+  height: 58px;
+  margin: 12px 0 0 -1px;
+  border-left: 0;
+  border-radius: 0 18px 18px 0;
+  pointer-events: auto;
+}
+
+.rail-collapse-button svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+body.rail-collapsed .rail-collapse-button svg {
+  transform: rotate(180deg);
+}
+
 .rail-tools-menu {
   position: fixed;
   z-index: 560;
-  left: calc(var(--rail) + 12px);
-  top: calc(var(--top) + var(--safe-top) + 36px);
-  width: min(220px, calc(100vw - var(--rail) - 16px));
+  left: 70px;
+  top: calc(var(--rail-top) + 8px);
+  width: min(220px, calc(100vw - 86px));
   display: grid;
   gap: 7px;
   border: 1px solid rgba(96, 235, 255, 0.24);
@@ -370,6 +430,10 @@ button { cursor: pointer; }
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+}
+
+body.rail-collapsed .rail-tools-menu {
+  left: 22px;
 }
 
 .rail-tools-menu[hidden] { display: none; }
@@ -432,6 +496,7 @@ button { cursor: pointer; }
   display: grid;
   place-items: center;
   padding: calc(var(--top) + var(--safe-top) + 120px) 18px 32px calc(var(--rail) + 18px);
+  transition: padding-left 0.22s ease;
 }
 
 .card {
